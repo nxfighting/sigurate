@@ -1,4 +1,4 @@
-package com.vict.sigurate;
+package com.vict.sigurate.registery;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

@@ -3,7 +3,7 @@
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://47.96.93.75:3308/job?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8
+    url: jdbc:mysql://47.96.93.75:3308/job?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
     username: zhougf
     password: zhougf
     hikari:
@@ -12,6 +12,8 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
+      max-lifetime: 30000
+      maximum-pool-size: 10
   application:
     name: work-sigurate
 server:

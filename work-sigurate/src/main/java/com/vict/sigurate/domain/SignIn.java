@@ -1,4 +1,5 @@
-package com.vict.sigurate;
+package com.vict.sigurate.domain;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +18,12 @@ public class SignIn {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Column(name="work_time")
     private Date workTime;
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Column(name="leave_time")
     private Date leaveTime;
+    @Column(name="sign_person")
+    private String signName;
 }
