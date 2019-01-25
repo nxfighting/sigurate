@@ -1,4 +1,5 @@
 <template>
+
   <el-row>
     <el-col :span="24">
       <el-button style="width: 90%;" type="primary" v-on:click="handleLogin">
@@ -10,6 +11,11 @@
     <el-col :span="24">
       <el-button style="width: 90%;" type="primary" v-on:click="handleLoginOut">
         <span>签退</span>
+      </el-button>
+    </el-col>
+    <el-col :span="24">
+      <el-button style="width: 90%;" type="primary" v-on:click="handleLoginForgot">
+        <span>补打</span>
       </el-button>
     </el-col>
     <el-col :span="24" style="min-height: 15px;"></el-col>
@@ -27,7 +33,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      SERVER_URL:'http://47.96.93.75:8102/api',
+      SERVER_URL:'http://localhost:8102/api',
     }
   },
   methods:{
@@ -46,6 +52,9 @@ export default {
       },function(res){
         _this.$alert(res,'错误');
       })
+    },
+    handleLoginForgot:function(){
+
     },
     handleLoginRecords(){
       this.$router.push("/item")
