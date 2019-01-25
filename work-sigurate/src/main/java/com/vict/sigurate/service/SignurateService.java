@@ -21,4 +21,5 @@ public interface SignurateService {
     List<SignIn> findByDate(Date date);
 
     SignIn  forgetSign(SignIn sign);
+    List<SignIn> queryByMonth(String date);
 }

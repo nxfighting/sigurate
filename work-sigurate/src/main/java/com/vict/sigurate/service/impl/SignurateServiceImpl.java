@@ -46,4 +46,9 @@ public class SignurateServiceImpl implements SignurateService {
     public SignIn forgetSign(SignIn sign) {
         return this.signInRepository.save(sign);
     }
+
+    @Override
+    public List<SignIn> queryByMonth(String date) {
+        return this.signInRepository.queryByMonth(date.substring(0,7));
+    }
 }

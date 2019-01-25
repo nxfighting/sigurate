@@ -15,4 +15,6 @@ public interface SignInRepository extends CommonJpaRepository<SignIn,Long> {
     int  updateByDate(@Param("currentDate")Date currentDate,@Param("leaveTime")Date leaveTime);
     @Query("select distinct  si from SignIn si where DATEDIFF(workTime,:workTime)=0")
     List<SignIn> findByWorkTime(@Param("workTime")Date workTime);
+    @Query("select distinct  si from SignIn si where SUBSTRING(work_time , 1 , 7)=:month")
+    List<SignIn> queryByMonth(@Param("month") String month);
 }

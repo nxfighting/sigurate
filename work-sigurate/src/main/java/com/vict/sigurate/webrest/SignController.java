@@ -14,10 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -73,8 +75,11 @@ public class SignController {
     @RequestMapping("/records")
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<List<SignIn>> getRecords(Pageable pa, SignVM vm) {
-        Page<SignIn> pager = this.signurateService.findAll(pa,vm);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(pager, "/api/sign/records");
-        return new ResponseEntity<>(pager.getContent(), headers, HttpStatus.OK);
+        if(StringUtils.isEmpty(vm.getMonth())){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+            vm.setMonth(simpleDateFormat.format(new Date()));
+        }
+        List<SignIn> signList= this.signurateService.queryByMonth(vm.getMonth());
+        return new ResponseEntity<>(signList,HttpStatus.OK);
     }
 }
