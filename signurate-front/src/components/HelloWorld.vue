@@ -13,6 +13,7 @@
         <span>签退</span>
       </el-button>
     </el-col>
+    <el-col :span="24" style="min-height: 15px;"></el-col>
     <el-col :span="24">
       <el-button style="width: 90%;" type="primary" v-on:click="handleLoginForgot">
         <span>补打</span>
@@ -57,7 +58,7 @@ export default {
 
     },
     handleLoginRecords(){
-      this.$router.push("/item")
+      this.$router.push("/item");
     }
   }
 }
