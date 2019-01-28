@@ -34,7 +34,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      SERVER_URL:'http://localhost:8102/api',
+      SERVER_URL:'http://47.96.93.75:8102/api',
     }
   },
   methods:{
