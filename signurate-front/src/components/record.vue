@@ -73,7 +73,7 @@
         },
         // 选中项数据
         multipleSelection: [],
-        SERVER_URL: 'http://localhost:8102/api',
+        SERVER_URL: 'http://47.96.93.75:8102/api',
       }
     },
     created() {
@@ -107,7 +107,8 @@
         if(value==undefined||value==null)
           return "";
         let time =value.substr(11,21);
-        let hour = time.substr(3,5);
+        let hour = time.substr(0,2);
+        console.log(hour);
         let suffix=' AM';
         if(parseInt(hour)>12){
           suffix=' PM';
