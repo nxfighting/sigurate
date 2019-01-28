@@ -1,14 +1,10 @@
 package com.vict.sigurate.webrest;
 
-import com.vict.sigurate.registery.SignInRepository;
 import com.vict.sigurate.domain.SignIn;
 import com.vict.sigurate.service.SignurateService;
-import com.vict.sigurate.utils.PaginationUtil;
 import com.vict.sigurate.webrest.vm.SignVM;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,8 +35,8 @@ public class SignController {
     public ResponseEntity<?> signIn(SignIn signIn) {
         StringBuffer msg = new StringBuffer();
         List<SignIn> list = this.signurateService.findByDate(new Date());
-        if(ObjectUtils.isEmpty(signIn)){
-            signIn =new SignIn();
+        if (ObjectUtils.isEmpty(signIn)) {
+            signIn = new SignIn();
             signIn.setSignName("zhougf");
         }
         if (CollectionUtils.isEmpty(list)) {
@@ -57,8 +53,8 @@ public class SignController {
     @RequestMapping("/out")
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<?> signOut(Date leaveTime) {
-        if(leaveTime==null)
-            leaveTime=new Date();
+        if (leaveTime == null)
+            leaveTime = new Date();
         this.signurateService.signOutByDate(leaveTime);
         return ResponseEntity.ok("老铁，恭喜你打卡成功！");
     }
@@ -75,11 +71,11 @@ public class SignController {
     @RequestMapping("/records")
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<List<SignIn>> getRecords(Pageable pa, SignVM vm) {
-        if(StringUtils.isEmpty(vm.getMonth())){
+        if (StringUtils.isEmpty(vm.getMonth())) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
             vm.setMonth(simpleDateFormat.format(new Date()));
         }
-        List<SignIn> signList= this.signurateService.queryByMonth(vm.getMonth());
-        return new ResponseEntity<>(signList,HttpStatus.OK);
+        List<SignIn> signList = this.signurateService.queryByMonth(vm.getMonth());
+        return new ResponseEntity<>(signList, HttpStatus.OK);
     }
 }
