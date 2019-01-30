@@ -1,0 +1,5 @@
+spring:
+  hadoop:
+    fsshell:
+      enabled: true
+    fs-uri: hdfs://hadoop000:8020
